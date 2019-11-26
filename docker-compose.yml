@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # Node
+  node: 
+    container_name: node-start-page
+    restart: always
+    build: ./server
+    volumes: 
+      - './app:/app'
+    ports:
+      - '80:3000'
+    # links: 
+    #   - mongo
+    networks: 
+      - mern-env
+  # Mongodb
+  mongo:
+    container_name: mongo-start-page
+    image: mongo:4.0.4
+    ports:
+      - '27017:27017'
+    networks: 
+      - mern-env
+
+networks: 
+  mern-env:
